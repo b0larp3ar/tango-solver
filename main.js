@@ -386,6 +386,7 @@ function solveTango(){
     fillBoard(originalBoard, board);
 }
 
+console.log("main.js started executing");
 chrome.runtime.onMessage.addListener((message)=>{
     if(message.action==="solve"){
         solveTango();
