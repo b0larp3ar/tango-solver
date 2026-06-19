@@ -3,6 +3,8 @@
 
   "name": "LinkedIn Tango Solver",
 
+  "description" : "Automatically solves your Tango puzzle in Linkedin with one click.",
+
   "version": "1.0",
 
   "permissions": [
@@ -39,5 +41,15 @@
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
+  },
+
+  "browser_specific_settings" : {
+    "gecko": {
+      "id": "linkedin-tango-solver@shreejithj",
+
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
   }
 }

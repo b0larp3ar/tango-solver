@@ -321,6 +321,16 @@ function solve(board){
     return false;
 }
 
+function sleep(ms){
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                ms
+            )
+    );
+}
+
 function clickCell(cell){
     cell.dispatchEvent(
         new MouseEvent(
@@ -345,36 +355,40 @@ function clickCell(cell){
 }
 
 // fill the puzzle in linkedin
-function fillBoard(originalBoard, solvedBoard){
-    const cells = document.querySelectorAll(
-        '[data-cell-idx]'
-    );
+// fill the puzzle in linkedin
+async function fillBoard(originalBoard, solvedBoard){
+    const cells = document.querySelectorAll('[data-cell-idx]');
 
-    cells.forEach(cell => {
-        const idx = Number(
-            cell.getAttribute('data-cell-idx')
-        );
+    for(const cell of cells){
+        const idx = Number(cell.getAttribute('data-cell-idx'));
 
         const row = Math.floor(idx / SIZE);
+
         const col = idx % SIZE;
 
         // Skip pre-filled cells
-        if(originalBoard[row][col] !== E){
-            return;
+        if(originalBoard[row][col]!== E){
+            continue;
         }
 
-        if(solvedBoard[row][col] === X){
+        if(solvedBoard[row][col]===X){
             clickCell(cell);
+            await sleep(200);
         }
 
-        else if(solvedBoard[row][col] === O){
+        else if(solvedBoard[row][col]===O){
             clickCell(cell);
+            await sleep(200);
             clickCell(cell);
+            await sleep(200);
         }
-    });
+    }
+
+    // Give LinkedIn time to save
+    await sleep(500);
 }
 
-function solveTango(){
+async function solveTango(){
     SIZE = Math.sqrt(document.querySelectorAll('[data-cell-idx]').length);
     const originalBoard = extractBoard();
     const board = originalBoard.map(row => [...row]);
@@ -383,7 +397,7 @@ function solveTango(){
     opposite = constraints.opposite;
 
     solve(board);
-    fillBoard(originalBoard, board);
+    await fillBoard(originalBoard, board);
 }
 
 console.log("main.js started executing");
