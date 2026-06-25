@@ -8,7 +8,7 @@ Available on Firefox: https://addons.mozilla.org/en-US/firefox/addon/linkedin-ta
 ## Screenshots
 
 <p align="center">
-   <img src="images/popup.png" style="width: 300px; height: auto;"> 
+   <img src="images/popup_v1.1.png" style="width: 300px; height: auto;"> 
 </p>
 
 <p align="center">
@@ -66,7 +66,9 @@ https://www.linkedin.com/games/tango/
 ```
 linkedin-tango-solver/
 |
-├──images/
+├── fonts/
+|
+├── images/
 |
 ├── manifest.json
 |
