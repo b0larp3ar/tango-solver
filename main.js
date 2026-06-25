@@ -372,14 +372,14 @@ async function fillBoard(originalBoard, solvedBoard){
 
         if(solvedBoard[row][col]===X){
             clickCell(cell);
-            await sleep(100);
+            await sleep(50);
         }
 
         else if(solvedBoard[row][col]===O){
             clickCell(cell);
-            await sleep(100);
+            await sleep(50);
             clickCell(cell);
-            await sleep(100);
+            await sleep(50);
         }
     }
 
@@ -399,7 +399,6 @@ async function solveTango(){
     await fillBoard(originalBoard, board);
 }
 
-console.log("main.js started executing");
 chrome.runtime.onMessage.addListener((message)=>{
     if(message.action==="solve"){
         solveTango();
